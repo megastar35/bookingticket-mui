@@ -6,7 +6,6 @@ import { actionSigninAPI } from '../../redux/modules/SigninReducer/action';
 import { connect } from 'react-redux';
 
 function LoginPage(props) {
-
     const [account, setAccount] = useState({
         taiKhoan: "",
         matKhau: "",
@@ -24,7 +23,6 @@ function LoginPage(props) {
     const handleSubmit = (event) => {
         event.preventDefault();
         props.fetchSignin(account);
-        console.log("abc");
     }
 
 
@@ -54,7 +52,7 @@ function LoginPage(props) {
                         onChange={handleOnChange}
 
                     />
-                    <Button variant="contained" fullWidth endIcon={<SendIcon />}>
+                    <Button variant="contained" fullWidth endIcon={<SendIcon />} type="submit">
                         <Typography fontWeight="bold" fontSize="24px">
                             Sign In
                         </Typography>
