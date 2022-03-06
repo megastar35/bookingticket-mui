@@ -6,7 +6,7 @@ let intialState = {
 }
 
 export const signinReducer = (state = intialState, action) => {
-    switch (action) {
+    switch (action.type) {      // nhớ .type còn vì sao thì qua file action
         case actionType.SIGNIN_REQUEST:
             state.data = null;
             state.err = null;

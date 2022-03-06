@@ -1,14 +1,14 @@
 import * as ActionType from "./constances"
 import api from "../../../utils/api"
 
-export const actionSigninAPI = (user) => {
+export const actionSigninAPI = (user, navigate) => {
     return dispatch => {
         dispatch(actSigninRequest());
         api.post("/QuanLyNguoiDung/DangNhap", user)
             .then(rs => {
                 dispatch(actSiginSuccess(rs.data))
                 if (rs.data.maLoaiNguoiDung === "KhachHang") {
-                    alert("welcome mc")
+                    navigate('/home', {replace: true}); // viết trước để đó khi nào gọi thì hàm useNavigate() còn biết gì mà làm
                 } else if (rs.data.maLoaiNguoiDung === "QuanTri") {
                     alert("welcome db")
                 }
