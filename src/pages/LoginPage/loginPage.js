@@ -4,8 +4,13 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import SendIcon from '@mui/icons-material/Send';
 import { actionSigninAPI } from '../../redux/modules/SigninReducer/action';
 import { connect } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { loginForm } from '../../utils/material-ui';
+
 
 function LoginPage(props) {
+    let history = useNavigate();
+
     const [account, setAccount] = useState({
         taiKhoan: "",
         matKhau: "",
@@ -22,17 +27,20 @@ function LoginPage(props) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        props.fetchSignin(account);
+        props.fetchSignin(account, history);
+        console.log(props);
     }
 
+    const classes = loginForm();
 
     return (
-        <Container maxWidth="sm" sx={{ mt: 2 }}>
-            <Box sx={{ display: 'flex', alignItems: "center", justifyContent: "center", flexDirection: "column" }} component="form" onSubmit={handleSubmit}>
-                <Avatar sx={{ bgcolor: "#ef2020" }}>
-                    <LockOutlinedIcon></LockOutlinedIcon>
-                </Avatar>
-                <Typography variant="h4"> Login</Typography>
+        <Box className={classes.loginForm}>
+            <Container className={classes.Container} maxWidth="sm" sx={{ mt: 2 }}>
+                <Box sx={{ display: 'flex', alignItems: "center", justifyContent: "center", flexDirection: "column" }} component="form" onSubmit={handleSubmit}>
+                    <Avatar sx={{ bgcolor: "#ef2020" }}>
+                        <LockOutlinedIcon></LockOutlinedIcon>
+                    </Avatar>
+                    <Typography variant="h4"> Sign in</Typography>
                     <TextField
                         id="outlined-account-input"
                         name="taiKhoan"
@@ -43,6 +51,7 @@ function LoginPage(props) {
                         onChange={handleOnChange}
                     />
                     <TextField
+
                         id="outlined-password-input"
                         name="matKhau"
                         label="Password"
@@ -57,16 +66,17 @@ function LoginPage(props) {
                             Sign In
                         </Typography>
                     </Button>
-            </Box>
-        </Container>
 
+                </Box>
+            </Container>
+        </Box>
     )
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchSignin: (account) => {
-            dispatch(actionSigninAPI(account))
+        fetchSignin: (account, history) => {
+            dispatch(actionSigninAPI(account, history))
         }
     }
 }
