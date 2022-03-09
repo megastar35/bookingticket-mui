@@ -1,6 +1,8 @@
 import { makeStyles } from '@mui/styles';
 
 const $colorBackground = "#dad2b4";
+const $colorButton = "#f8b500";
+const $colorButtonHover = "#ffd159";
 
 export const registerForm = makeStyles({
     registerPage: {
@@ -20,10 +22,10 @@ export const registerForm = makeStyles({
         "& .divSelection": {
             marginTop: "20px",
             "& button": {
-                background: "#f8b500",
+                background: $colorButton,
                 fontSize: "16px",
                 "&:hover": {
-                    background: "#ffd159",
+                    background: $colorButtonHover,
                 },
                 "& p": {
                     fontSize: "16px",
@@ -46,6 +48,10 @@ export const loginForm = makeStyles({
         height: "100vh",
         background: $colorBackground,
         width: "100%",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        color: "white",
     },
     Container: {
         "& form": {
@@ -60,26 +66,36 @@ export const loginForm = makeStyles({
                     color: "white",
 
                 },
-
                 "& .MuiInputBase-root": {
                     borderRadius: "50px",
-                    
-                    "& input": {
-                        borderRadius: "50px",
-                        borderColor: "white",
 
-                        "&:focus": {
-                            borderColor: "white",
-                        }
+                    "& input": {
+                        color: "white",
+                    },
+                    "& fieldset": {
+
+                        borderColor: "white !important",
+
                     },
                 },
-
             },
-            "& .MuiFormControl-root:focus": {
-                background: "white",
-            },
-
-
+            "& .selectDiv": {
+                width: "90%",
+                "& a": {
+                    color: "white",
+                    textDecoration: "none",
+                    "&:hover": {
+                        textDecoration: "underline",
+                    },
+                },
+                "& button": {
+                    width: "40%",
+                    background: $colorButton,
+                    "&:hover": {
+                        background: $colorButtonHover,
+                    }
+                }
+            }
         },
     },
 })
