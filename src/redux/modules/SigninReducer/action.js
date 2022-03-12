@@ -15,7 +15,6 @@ export const actionSigninAPI = (user, navigate) => {
             })
             .catch(err => {
                 dispatch(actSigninFailed(err))
-                alert("Sai kia ml")
             })
     }
 }
