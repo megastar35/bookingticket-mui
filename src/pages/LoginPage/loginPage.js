@@ -5,7 +5,7 @@ import SendIcon from '@mui/icons-material/Send';
 import { actionSigninAPI } from '../../redux/modules/SigninReducer/action';
 import { connect } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { loginForm } from '../../utils/material-ui';
+import { loginLayout, renderError } from '../../utils/material-ui';
 import { checkEmpty } from '../../utils/validation';
 
 
@@ -48,18 +48,30 @@ function LoginPage(props) {
         })
         console.log(account.formValid);
     }
+    // console.log(props);
+    const handleError = () => {
 
+        const { errorNoti } = props;
 
-    const classes = loginForm();
+        if (errorNoti && errorNoti.response.status === 500) {
+            return <Typography className={classesError.p} sx={{ m: 1 }}> {errorNoti.response.data}</Typography>
+        }
+
+    }
+
+    const classes = loginLayout();
+    const classesError = renderError();
 
     return (
         <Box className={classes.loginForm}>
-            <Container className={classes.Container} maxWidth="sm" sx={{ mt: 2 }}>
+            <Container className={classes.Container} sx={{display: 'flex', alignItems: "center", justifyContent: "center",}} maxWidth="sm" >
                 <Box sx={{ display: 'flex', alignItems: "center", justifyContent: "center", flexDirection: "column" }} component="form" onSubmit={handleSubmit}>
-                    <Avatar sx={{ bgcolor: "#ef2020" }}>
+                    <Avatar sx={{ m: 2, bgcolor: "#ef2020" }}>
                         <LockOutlinedIcon></LockOutlinedIcon>
                     </Avatar>
                     <Typography variant="h4"> Sign in</Typography>
+                    {handleError()}
+
                     <TextField
                         id="outlined-account-input"
                         name="taiKhoan"
@@ -68,9 +80,10 @@ function LoginPage(props) {
                         margin="normal"
                         fullWidth
                         onChange={handleOnChange}
-                        onBlur={renderNoti}
+                        onKeyUp={renderNoti}
+
                     />
-                    <Typography>  { account.errors.taiKhoan} </Typography>
+                    <Typography>  {account.errors.taiKhoan} </Typography>
                     <TextField
                         id="outlined-password-input"
                         name="matKhau"
@@ -79,7 +92,9 @@ function LoginPage(props) {
                         margin="normal"
                         fullWidth
                         onChange={handleOnChange}
-                        onBlur={renderNoti}
+                        onKeyUp={renderNoti}
+        
+
                     />
                     <Typography> {account.errors.matKhau} </Typography>
 
@@ -104,5 +119,10 @@ const mapDispatchToProps = (dispatch) => {
         }
     }
 }
+const mapStateToProps = (state) => {
+    return {
+        errorNoti: state.signinReducer.err,
+    }
+}
 
-export default connect(null, mapDispatchToProps)(LoginPage)
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage)
