@@ -9,13 +9,12 @@ function ListMovie(props) {
     props.getListMovie()
   }, [])
 
-  console.log(props.listMovie);
   const renderListMovie = () => {
     const { listMovie } = props
     if (listMovie) {
       return listMovie.map(listItem => {
-        <Grid item sm={6} md={3}>
-          <MovieCard></MovieCard>
+        return <Grid item key={listItem.maPhim} sm={6} md={3}>
+          <MovieCard movieInfo={listItem}></MovieCard>
         </Grid>
 
       }
@@ -23,7 +22,7 @@ function ListMovie(props) {
     }
   }
   return (
-    <Grid container spacing={2}  >
+    <Grid container sx={{mt: "100px"}} spacing={2}  >
       {renderListMovie()}
     </Grid>
   )

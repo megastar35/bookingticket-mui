@@ -169,7 +169,16 @@ export const StyledInputBase = makeStyles({
 },
 )
 
-export const MovieCard = makeStyles({
-    
+export const CardMovie = makeStyles({
+    imgBox: {
+        position: 'relative',
+        overflow:'hidden',
+        "&::before": {
+            display: 'block',
+            content: "''",
+
+            paddingBottom: "75%",
+        }
+    }
 })
 
