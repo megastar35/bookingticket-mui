@@ -169,3 +169,7 @@ export const StyledInputBase = makeStyles({
 },
 )
 
+export const MovieCard = makeStyles({
+    
+})
+

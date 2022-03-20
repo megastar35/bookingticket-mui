@@ -11,12 +11,11 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { Search } from '@mui/icons-material';
 import { InputBase } from '@mui/material';
 import { styled, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 
-const pages = ['Danh sách phim', 'Cụm rạp'];
+const pages = ['Danh sách phim', 'Cụm rạp', 'Support'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const ResponsiveAppBar = () => {
@@ -87,7 +86,14 @@ const ResponsiveAppBar = () => {
                     >
                         LOGO
                     </Typography>
-
+                    <Search sx={{ flexGrow: 1, }}>
+                        <SearchIconWrapper>
+                            <SearchIcon />
+                        </SearchIconWrapper>
+                        <StyledInputBase placeholder="Search…" inputProps={{ 'aria-label': 'search' }}
+                        />
+                    </Search>
+                    
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton size="large" aria-label="account of current user" aria-controls="menu-appbar" aria-haspopup="true" onClick={handleOpenNavMenu} color="inherit"
                         >
@@ -132,14 +138,8 @@ const ResponsiveAppBar = () => {
                             </Button>
                         ))}
                     </Box>
-                    <Search sx={{flexGrow: 1,}}>
-                        <SearchIconWrapper>
-                            <SearchIcon />
-                        </SearchIconWrapper>
-                        <StyledInputBase placeholder="Search…" inputProps={{ 'aria-label': 'search' }}
-                        />
-                    </Search>
-                    
+
+
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

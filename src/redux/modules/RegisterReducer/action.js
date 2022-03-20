@@ -7,13 +7,11 @@ export const actRegisterAPI = (info) => {
         api.post("/QuanLyNguoiDung/DangKy", info)
             .then(rs => {
                 dispatch(actRegisterSuccess(rs.data))
-                alert()
             }
             )
             .catch(
                 err => {
                     dispatch(actRegisterFailed(err))
-                    // console.log(err.response);
                 }
             )
     }
