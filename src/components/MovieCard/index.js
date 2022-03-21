@@ -4,26 +4,39 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Box, Button, CardActionArea, CardActions } from '@mui/material';
+import { CardMovie } from '../../utils/material-ui/index'
 
-export default function MovieCard() {
-    const [movieInfo, setmovieInfo] = React.useState({
-        maPhim: "",
-    })
-    
+export default function MovieCard(props) {
+
+    const { movieInfo } = props;
+    console.log("abc");
+
+    const cardMovieStyle = CardMovie();
     return (
-        <Card sx={{ maxWidth: 380, minWidth: 300 }}>
-            <CardActionArea>
-                <CardMedia
-                    component="img"
-                    height="140"
-                    image="/static/images/cards/contemplative-reptile.jpg"
-                    alt="green iguana"
-                />
+        <Card sx={{ maxWidth: 380, minWidth: 300, height: "100%", }}>
+            <CardActionArea >
+                <Box className={cardMovieStyle.imgBox} >
+                    <CardMedia
+                        component="img"
+                        width="100%"
+                        height='100%'
+                        image={movieInfo.hinhAnh}
+                        alt="green iguana"
+                        
+                        sx={{
+                            top: '50%',
+                            left: '0',
+                            position: 'absolute',
+                            transform: 'translateY(-50%)',
+                            objectFit: "fill",
+                        }}
+                    />
+                </Box>
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
-                        Movie Name
+                        {movieInfo.tenPhim}
                     </Typography>
-                    <Box sx={{ display: { xs: 'flex' },justifyContent: "space-between", m: '2px' }}>
+                    <Box sx={{ display: { xs: 'flex' }, justifyContent: "space-between", m: '2px', position: 'absolute', bottom: 0 }}>
                         <Typography variant="body2" color="text.secondary">
                             Ngay khoi chieu
                         </Typography>
@@ -31,10 +44,10 @@ export default function MovieCard() {
                             Danh gia
                         </Typography>
                     </Box>
-                    
                 </CardContent>
+
             </CardActionArea>
-            <CardActions>
+            <CardActions sx={{}}>
                 <Button size="small" color="primary">
                     More Detail
                 </Button>

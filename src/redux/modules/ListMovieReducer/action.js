@@ -6,7 +6,7 @@ export const actListMovieAPI = () => {
         dispatch(actListMovieRequest())
         api.get("/QuanLyPhim/LayDanhSachPhim?maNhom=GP05")
             .then(rs => {
-                dispatch(actListMovieSuccess(rs))
+                dispatch(actListMovieSuccess(rs.data))
             })
             .catch(err => {
                 dispatch(actListMovieFailed(err))
