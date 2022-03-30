@@ -93,8 +93,6 @@ function LoginPage(props) {
                         fullWidth
                         onChange={handleOnChange}
                         onKeyUp={renderNoti}
-        
-
                     />
                     <Typography> {account.errors.matKhau} </Typography>
 

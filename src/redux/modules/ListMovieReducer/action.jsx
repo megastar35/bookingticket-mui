@@ -4,7 +4,7 @@ import * as ActionType from "./constances"
 export const actListMovieAPI = () => {
     return dispatch => {
         dispatch(actListMovieRequest())
-        api.get("/QuanLyPhim/LayDanhSachPhim?maNhom=GP05")
+        api.get("/QuanLyPhim/LayDanhSachPhim?maNhom=GP08")
             .then(rs => {
                 dispatch(actListMovieSuccess(rs.data))
             })
