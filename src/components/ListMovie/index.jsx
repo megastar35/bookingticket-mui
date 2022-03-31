@@ -8,6 +8,7 @@ import MovieCard from '../MovieCard'
 function ListMovie(props) {
   useEffect(() => {
     props.getListMovie()
+    // eslint-disable-next-line react-hooks/exhaustive-deps  
   }, [])
 
   const classes = ListMovieSection();
@@ -42,7 +43,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 const mapStateToProps = (state) => {
   return {
-    listMovie: state.listMovieReducer.data
+    listMovie: state.listMovieReducer.data,
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(ListMovie)
