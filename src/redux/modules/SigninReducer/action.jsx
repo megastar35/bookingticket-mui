@@ -7,8 +7,10 @@ export const actionSigninAPI = (user, navigate) => {
         api.post("/QuanLyNguoiDung/DangNhap", user)
             .then(rs => {
                 dispatch(actSiginSuccess(rs.data))
+                localStorage.setItem('userInfo', JSON.stringify(rs.data))
                 if (rs.data.maLoaiNguoiDung === "KhachHang") {
-                    navigate('/home', {replace: true}); // viết trước để đó khi nào gọi thì hàm useNavigate() còn biết gì mà làm
+                    navigate('/', { replace: true }); // viết trước để đó khi nào gọi thì hàm useNavigate() còn biết gì mà làm
+
                 } else if (rs.data.maLoaiNguoiDung === "QuanTri") {
                     alert("welcome db")
                 }
@@ -36,5 +38,13 @@ const actSigninFailed = (err) => {
         type: ActionType.SIGNIN_FAILED,
         payday: err,
     }
+}
+
+export const actLogout = (navigate) => {
+    if(localStorage.getItem("userInfo")){
+        localStorage.removeItem("userInfo")
+    }
+    navigate('/login', { replace: true });
+
 }
 

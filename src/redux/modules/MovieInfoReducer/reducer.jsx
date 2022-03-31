@@ -5,7 +5,7 @@ let initialState = {
     err: null,
 }
 
-export const movieInfoReduer = (state = initialState, action) => {
+export const movieInfoReducer = (state = initialState, action) => {
     switch (action.type) {
         case ActionType.MOVIEINFO_REQUEST:
             state.data = null;

@@ -4,9 +4,9 @@ import * as ActionType from "./constances"
 export const actMovieInfoAPI = (movieId) => {
     return dispatch => {
         dispatch(actMovieInfoRequest());
-        api.get("/ api / QuanLyPhim / LayThongTinPhim", movieId)
+        api.get(`/QuanLyPhim/LayThongTinPhim?MaPhim=${movieId}`)
             .then(rs => {
-                dispatch(actMovieInfoSuccess(rs))
+                dispatch(actMovieInfoSuccess(rs.data))
             })
             .catch(err => {
                 dispatch(actMovieInfoFailed(err))
@@ -21,7 +21,7 @@ const actMovieInfoRequest = () => {
 
 const actMovieInfoSuccess = (data) => {
     return {
-        type: ActionType.MOVIEINFO_SUCESS,
+        type: ActionType.MOVIEINFO_SUCCESS,
         payday: data,
     }
 }

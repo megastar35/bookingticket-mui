@@ -1,11 +1,10 @@
 import { makeStyles } from '@mui/styles';
-
-const $colorBackground = "linear-gradient(to right bottom, #c0392b, #8e44ad)";
+import { colors } from "../../utils/colors"
+const $colorBackground = `linear-gradient(to bottom right, ${colors.$ocean}, ${colors.$purple})`;
 const $colorButton = "#f8b500";
 const $colorButtonHover = "#ffd159";
 
 const glassMorphism = makeStyles({
-    background: $colorBackground,
     width: "100%",
     display: "flex",
     justifyContent: "center",
@@ -170,14 +169,142 @@ export const StyledInputBase = makeStyles({
 )
 
 export const CardMovie = makeStyles({
+    card: {
+        boxShadow: "rgba(255, 255, 255, 0.30)  20px 20px 50px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px",
+        borderTop: "1px solid rgba(255,255,255,0.5)",
+        borderLeft: "1px solid rgba(255,255,255,0.5)",
+        background: "rgba(255,255,255,0.1)",
+        backdropFilter: "blur(5px)",
+    },
     imgBox: {
         position: 'relative',
-        overflow:'hidden',
+        overflow: 'hidden',
         "&::before": {
             display: 'block',
             content: "''",
-
             paddingBottom: "75%",
+        }
+    },
+    rating: {
+        position: 'absolute',
+        top: 20,
+        right: 10,
+        background: "#cc2b5e",
+        color: "white",
+        zIndex: "100",
+        padding: "8px 15px",
+        fontWeight: "bold",
+        "&::before, &::after": {
+            display: "block",
+            content: "''",
+            background: "#cc2b5e",
+            width: 40,
+            height: 2,
+            transform: "translate(10px,-20px) rotate(50deg)"
+        },
+        "&::after": {
+            transform: "translate(-10px,-45px) rotate(-50deg)"
+        },
+        "& p": {
+            display: 'flex',
+            alignItems: "center",
+            justifyContent: "center",
+            fontSize: "18px",
+
+        }
+    },
+    cardContent: {
+        "& div, span": {
+            color: "white",
+        }
+    },
+    cardAction: {
+        display: 'flex',
+        justifyContent: "space-around",
+        "& a": {
+            textDecoration: "none",
+        },
+        "& .detailBtn, .trailerBtn": {
+            fontWeight: "bold",
+            fontSize: "16px",
+            color: "white",
+            background: " #00c3ff",
+            padding: "5px 10px",
+            "&:hover": {
+                color: "white",
+            }
+        },
+        "& .trailerBtn": {
+            background: " #34e89e",
+        }
+    }
+})
+
+export const ListMovieSection = makeStyles({
+    MovieList: {
+        background: $colorBackground,
+        "& h4": {
+            borderBottom: "2px solid",
+            marginBottom: "10px",
+        }
+    },
+})
+export const PopupStyle = makeStyles({
+    popup: {
+        "& button": {
+            position: "absolute",
+            top: 0,
+            right: 0,
+            color: "gray",
+            "&:hover": {
+                color: "black",
+            }
+        }
+    }
+})
+
+export const MovieDetailStyle = makeStyles({
+    MovieDetailSection: {
+        width: "100%",
+        height: "100%",
+        fontSize: "36px",
+        textAlign: "center",
+    },
+    DetaiMovielPage: {
+        width: "80%",
+        margin: "auto",
+        background: "red",
+    },
+    MovieDetailTrailer: {
+        maxWidth: "100%",
+        height: "60vh",
+        background: "orange",
+    },
+    MovieDetailContent: {
+        maxWidth: "100%",
+        height: "40vh",
+        background: "green",
+        display: "flex",
+        "& #imgBox": {
+            background: "purple",
+            maxWidth: "220px",
+            height: "250px",
+            transform: "translate(20px, -125px)",
+            position: 'relative',
+            overflow: 'hidden',
+            "&::before": {
+                display: 'block',
+                content: "''",
+                paddingBottom: "75%",
+            }
+        },
+        "& #moTaBox": {
+            display:"grid",
+            textAlign: "left",
+            border: "1px solid white",
+            margin: "15px 50px",
+            padding: "5px 10px",
+            
         }
     }
 })
