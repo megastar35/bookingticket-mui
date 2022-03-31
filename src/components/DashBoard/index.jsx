@@ -50,8 +50,8 @@ const ResponsiveAppBar = (props) => {
         marginLeft: 0,
         width: '100%',
         [theme.breakpoints.up('sm')]: {
-            marginLeft: theme.spacing(1),
-            width: 'auto',
+            margin: "0 20px 0 auto",
+            width: '300px',
         },
     }));
     const SearchIconWrapper = styled('div')(({ theme }) => ({
@@ -90,14 +90,6 @@ const ResponsiveAppBar = (props) => {
                     >
                         LOGO
                     </Typography>
-                    <Search sx={{ flexGrow: 1, }}>
-                        <SearchIconWrapper>
-                            <SearchIcon />
-                        </SearchIconWrapper>
-                        <StyledInputBase placeholder="Search…" inputProps={{ 'aria-label': 'search' }}
-                        />
-                    </Search>
-
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton size="large" aria-label="account of current user" aria-controls="menu-appbar" aria-haspopup="true" onClick={handleOpenNavMenu} color="inherit"
                         >
@@ -131,18 +123,24 @@ const ResponsiveAppBar = (props) => {
                     >
                         LOGO
                     </Typography>
-                    <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                    <Box sx={{ display: { xs: 'none', md: 'flex', marginRight: "auto" } }}>
                         {pages.map((page) => (
                             <Button
                                 key={page}
                                 onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: 'white', display: 'block' }}
+                                sx={{ color: 'white', display: 'block' }}
                             >
                                 {page}
                             </Button>
                         ))}
                     </Box>
-
+                    <Search>
+                        <SearchIconWrapper>
+                            <SearchIcon />
+                        </SearchIconWrapper>
+                        <StyledInputBase placeholder="Search…" inputProps={{ 'aria-label': 'search' }}
+                        />
+                    </Search>
 
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">

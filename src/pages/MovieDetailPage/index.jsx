@@ -1,4 +1,4 @@
-import { Box, CardMedia, Typography } from '@mui/material'
+import { Box, CardMedia, List, ListItem, ListItemText, Typography } from '@mui/material'
 import React, { useEffect } from 'react'
 import { MovieDetailStyle } from "../../utils/material-ui"
 import { useParams } from 'react-router-dom';
@@ -19,7 +19,7 @@ function MovieDetailPage(props) {
             return <Box className={classes.MovieDetailSection} sx={{ background: "blue" }}>
                 <Box className={classes.DetaiMovielPage}>
                     <Box className={classes.MovieDetailTrailer}>
-                        <iframe width="100%" height="100%" src={mvInfo.trailer}></iframe>
+                        <iframe width="100%" height="100%" src={`${mvInfo.trailer}?autoplay=1&mute=1`} allow='autoplay'></iframe>
                     </Box>
                     <Box className={classes.MovieDetailContent} >
                         <CardMedia
@@ -29,16 +29,17 @@ function MovieDetailPage(props) {
                             height='100%'
                             image={mvInfo.hinhAnh}
                         />
-                        <Box id="moTaBox">
-                            <Typography variant="span">Tóm tắt: </Typography><Typography variant='span'> {mvInfo.moTa}</Typography>
-                            
-                            <Typography>
-                                Ngày khởi chiếu: {mvInfo.ngayKhoiChieu}
-                            </Typography>
-                            <Typography>
-                                Đánh giá: {mvInfo.danhGia}
-                            </Typography>
-                        </Box>
+                        <List id="moTaBox">
+                            <ListItem>
+                                <Typography variant='span'>Mô tả:</Typography><Typography>{mvInfo.moTa}</Typography>
+                            </ListItem>
+                            <ListItem>
+                                <Typography variant='span'>Ngày khởi chiếu:</Typography><Typography>{mvInfo.ngayKhoiChieu}</Typography>
+                            </ListItem>
+                            <ListItem>
+                                <Typography variant='span'>Đánh giá:</Typography><Typography>{mvInfo.danhGia}/10</Typography>
+                            </ListItem>
+                        </List>
                     </Box>
                 </Box>
             </Box >

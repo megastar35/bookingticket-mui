@@ -277,14 +277,25 @@ export const MovieDetailStyle = makeStyles({
     },
     MovieDetailTrailer: {
         maxWidth: "100%",
-        height: "60vh",
-        background: "orange",
+        position: 'relative',
+        overflow: 'hidden',
+        "&::before": {
+            content: '""',
+            display: 'block',
+            paddingBottom: "35%",
+        },
+        "& iframe": {
+            position: 'absolute',
+            top: 0,
+            left: 0,
+        }
     },
     MovieDetailContent: {
         maxWidth: "100%",
-        height: "40vh",
         background: "green",
         display: "flex",
+        borderTop: '2px solid',
+        borderColor: colors.$white,
         "& #imgBox": {
             background: "purple",
             maxWidth: "220px",
@@ -299,12 +310,20 @@ export const MovieDetailStyle = makeStyles({
             }
         },
         "& #moTaBox": {
-            display:"grid",
             textAlign: "left",
             border: "1px solid white",
             margin: "15px 50px",
             padding: "5px 10px",
-            
+            '& span':{
+                display: 'inline-block',
+                marginRight: '15px',
+                fontSize: '18px',
+                fontWeight: 'bold',
+                width: '20%',
+            },
+            '& p':{
+                width: '70%',
+            }
         }
     }
 })

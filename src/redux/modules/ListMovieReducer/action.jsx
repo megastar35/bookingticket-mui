@@ -17,8 +17,7 @@ export const actListMovieAPI = () => {
 
 const actListMovieRequest = () => {
     return {
-        type: ActionType.LISTMOVIE_REQUEST
-
+        type: ActionType.LISTMOVIE_REQUEST,
     }
 }
 
