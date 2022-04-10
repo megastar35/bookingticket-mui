@@ -4,6 +4,7 @@ import { MovieDetailStyle } from "../../utils/material-ui"
 import { useParams } from 'react-router-dom';
 import { actMovieInfoAPI } from '../../redux/modules/MovieInfoReducer/action';
 import { connect } from 'react-redux';
+import { convertDate } from '../../utils/convertDate';
 
 function MovieDetailPage(props) {
     useEffect(() => {
@@ -13,9 +14,11 @@ function MovieDetailPage(props) {
     let param = useParams();
     let movieID = param.id;
     const classes = MovieDetailStyle();
-
+    
     const renderMovieDetail = () => {
         if (mvInfo) {
+            const date = convertDate(mvInfo.ngayKhoiChieu) ;
+
             return <Box className={classes.MovieDetailSection} sx={{ background: "blue" }}>
                 <Box className={classes.DetaiMovielPage}>
                     <Box className={classes.MovieDetailTrailer}>
@@ -34,7 +37,7 @@ function MovieDetailPage(props) {
                                 <Typography variant='span'>Mô tả:</Typography><Typography>{mvInfo.moTa}</Typography>
                             </ListItem>
                             <ListItem>
-                                <Typography variant='span'>Ngày khởi chiếu:</Typography><Typography>{mvInfo.ngayKhoiChieu}</Typography>
+                                <Typography variant='span'>Ngày khởi chiếu:</Typography><Typography>{date}</Typography>
                             </ListItem>
                             <ListItem>
                                 <Typography variant='span'>Đánh giá:</Typography><Typography>{mvInfo.danhGia}/10</Typography>

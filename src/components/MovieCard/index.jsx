@@ -9,18 +9,14 @@ import { CardMovie } from '../../utils/material-ui/index'
 import StarIcon from '@mui/icons-material/Star';
 import Popup from '../Popup';
 import { Link,  } from 'react-router-dom';
+import {convertDate} from "../../utils/convertDate"
 function MovieCard(props) {
 
     const { movieInfo } = props;
     const [open, setOpen] = React.useState(false);
     const cardMovieStyle = CardMovie();
 
-    const convertDate = () => {
-        let letters = movieInfo.ngayKhoiChieu.split("T");
-        let date = letters[0];
-        return date;
-    }
-
+    const date = convertDate(movieInfo.ngayKhoiChieu);
     const handleOpen = () => {
         setOpen(!open);
     };
@@ -57,7 +53,7 @@ function MovieCard(props) {
                     </Typography>
 
                     <Typography variant="" sx={{ fontSize: "14px" }}>
-                        Ngày khởi chiếu: {convertDate()}
+                        Ngày khởi chiếu: {date}
                     </Typography>
 
 
