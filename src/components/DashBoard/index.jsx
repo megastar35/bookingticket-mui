@@ -14,7 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { InputBase } from '@mui/material';
 import { styled, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
-import {actLogout} from "../../redux/modules/SigninReducer/action"
+import { actLogout } from "../../redux/modules/SigninReducer/action"
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router';
 
@@ -80,6 +80,17 @@ const ResponsiveAppBar = (props) => {
             },
         },
     }));
+    const renderUserItem = () => {
+        if (user) {
+            return <MenuItem onClick={handleCloseUserMenu}>
+                <Typography textAlign="center">Profile</Typography>
+            </MenuItem>
+        } else {
+            return <MenuItem onClick={handleCloseUserMenu}>
+                <Typography textAlign="center">Login</Typography>
+            </MenuItem>
+        }
+    }
     // const classes = StyledInputBase();
     return (
         <AppBar position="fixed" sx={{ background: "#444" }} >
@@ -160,11 +171,9 @@ const ResponsiveAppBar = (props) => {
                             }}
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
-                        >
+                        >{renderUserItem()}
 
-                            <MenuItem onClick={handleCloseUserMenu}>
-                                <Typography textAlign="center">Profile</Typography>
-                            </MenuItem>
+
                             {/* <MenuItem onClick={()=>props.fetchLogout(history)}>
                                 <Typography textAlign="center">Logout </Typography>
                             </MenuItem> */}
@@ -177,9 +186,9 @@ const ResponsiveAppBar = (props) => {
         </AppBar>
     );
 };
-const mapDispatchToProps=(dispatch)=>{
-    return{
-        fetchLogout:(navigate)=>{
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchLogout: (navigate) => {
             dispatch(actLogout(navigate))
         }
     }
