@@ -9,6 +9,7 @@ import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { actUserInfoAPI } from "../../redux/modules/UserInfoReducer/action";
 import { connect } from 'react-redux';
 import { convertDate } from '../../utils/convertDate';
+import BookingHistory from '../../components/BookingHistory'
 function ProfilePage(props) {
 
     let account = {
@@ -26,9 +27,6 @@ function ProfilePage(props) {
 
     const renderProfilePage = () => {
         if (accountInfo) {
-
-            console.log(accountInfo);
-
             return <Box className={classes.profileContent}>
                 <Box className={classes.profileHeader}>
                     <Button>Edit profile<BorderColorIcon /></Button>
@@ -58,43 +56,7 @@ function ProfilePage(props) {
                         </Box>
                     </Box>
                     <Box className={classes.bookingHistory}>
-                        <TableContainer >
-                            <Table className={classes.table}>
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell>Mã Vé</TableCell>
-                                        <TableCell>Ngày Đặt</TableCell>
-                                        <TableCell>Tên Phim</TableCell>
-                                        <TableCell>Hệ Thống Rạp</TableCell>
-                                        <TableCell>Tên Rạp</TableCell>
-                                        <TableCell>Ghế Số</TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    {accountInfo.thongTinDatVe.map((tickets) => {
-                                        let bookingDate = convertDate(tickets.ngayDat);
-                                        return tickets.danhSachGhe.map((chair) => {
-
-                                            return <TableRow
-                                                key={chair.maGhe}>
-                                                <TableCell>{tickets.maVe}</TableCell>
-                                                <TableCell>{bookingDate}</TableCell>
-                                                <TableCell>{tickets.tenPhim}</TableCell>
-                                                <TableCell>
-                                                    {chair.tenHeThongRap}
-                                                </TableCell>
-                                                <TableCell>{chair.tenRap}</TableCell>
-
-                                                <TableCell sx={{textAlign:"center"}}>{chair.tenGhe}</TableCell>
-                                            </TableRow>
-
-                                        })
-                                    }
-                                    )
-                                    }
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
+                        <BookingHistory bookedData={accountInfo.thongTinDatVe}></BookingHistory>
                     </Box>
                 </Box>
 

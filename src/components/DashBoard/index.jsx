@@ -16,7 +16,7 @@ import { styled, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import { actLogout } from "../../redux/modules/SigninReducer/action"
 import { connect } from 'react-redux';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 const pages = ['Danh sách phim', 'Cụm rạp', 'Support'];
 
@@ -25,7 +25,8 @@ const ResponsiveAppBar = (props) => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const user = JSON.parse(localStorage.getItem("userInfo"));
-    // const history = useNavigate();
+    const navigate = useNavigate();
+
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
@@ -40,6 +41,18 @@ const ResponsiveAppBar = (props) => {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+    const renderUserItem = () => {
+        if (user) {
+            return <MenuItem onClick={() => navigate('profile')}>
+                <Typography textAlign="center">Profile</Typography>
+            </MenuItem>
+        } else {
+            return <MenuItem onClick={handleCloseUserMenu}>
+                <Typography textAlign="center">Login</Typography>
+            </MenuItem>
+        }
+    }
+    // Dashboard Style
     const Search = styled('div')(({ theme }) => ({
         position: 'relative',
         borderRadius: theme.shape.borderRadius,
@@ -80,17 +93,7 @@ const ResponsiveAppBar = (props) => {
             },
         },
     }));
-    const renderUserItem = () => {
-        if (user) {
-            return <MenuItem onClick={handleCloseUserMenu}>
-                <Typography textAlign="center">Profile</Typography>
-            </MenuItem>
-        } else {
-            return <MenuItem onClick={handleCloseUserMenu}>
-                <Typography textAlign="center">Login</Typography>
-            </MenuItem>
-        }
-    }
+    
     // const classes = StyledInputBase();
     return (
         <AppBar position="fixed" sx={{ background: "#444" }} >

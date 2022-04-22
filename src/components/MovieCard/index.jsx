@@ -61,7 +61,7 @@ function MovieCard(props) {
 
             </CardActionArea>
             <CardActions className={cardMovieStyle.cardAction}>
-                <Link to={`/detail/${movieInfo.maPhim}`}>
+                <Link to={`${movieInfo.maPhim}`}>
                     <Button className="detailBtn" size="small" color="primary" >
                         More Detail
                     </Button></Link>
